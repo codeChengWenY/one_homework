@@ -1,5 +1,5 @@
 /.idea/
-/output/
-target/
 /code/IPersistence/target/
 /code/IPersistence/IPersistence.iml
+/code/IPersistence_test/.idea
+/code/IPersistence_test/IPersistence_test.iml
