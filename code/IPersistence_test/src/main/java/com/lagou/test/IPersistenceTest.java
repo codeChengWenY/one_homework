@@ -31,7 +31,9 @@ public class IPersistenceTest {
 
     @Test
     public void test() throws Exception {
-
+        InputStream resourceAsSteam = Resources.getResourceAsSteam("sqlMapConfig.xml");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(resourceAsSteam);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
 
         //调用
 //        User user = new User();
@@ -51,7 +53,6 @@ public class IPersistenceTest {
 //        for (User user1 : all) {
 //            System.out.println(user1);
 //        }
-
 
     }
 
@@ -83,4 +84,5 @@ public class IPersistenceTest {
         userDel.setId(6);
         userDao.delete(userDel);
     }
+
 }
