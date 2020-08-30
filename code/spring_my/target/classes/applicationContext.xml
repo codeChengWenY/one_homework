@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans>
+
+    <!-- base-package：扫描包
+         exclude-package：排除扫描包
+    -->
+    <component-scan base-package="cn.coder"  exclude-package="com.coder.web"/>
+
+</beans>
