@@ -1,4 +1,4 @@
-                                 Zookeeper 作业
+                                 Zookeeper作业
 
 先看效果
 
@@ -16,7 +16,7 @@
 
    看服务端启动是否注册到zookeeper 中（说明服务端已经在zookeeper中注册）
 
-![image-20201026142325954](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20201026142325954.png)
+![image-20201026142325954](https://gitee.com/adc123321/blog_img/raw/master/image/202010/26/175453-706170.png)
 
 接下来  演示  当删除一个节点是否正常请求
 
@@ -36,17 +36,17 @@
 
 
 
-![image-20201026142739123](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20201026142739123.png)
+![image-20201026142739123](https://gitee.com/adc123321/blog_img/raw/master/image/202010/26/175449-250511.png)
 
 每个bean  实现 InitializingBean接口来做一些初始化启动服务端并注册到在Zookeeper 的工作。
 
-![image-20201026143046782](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20201026143046782.png)
+![image-20201026143046782](https://gitee.com/adc123321/blog_img/raw/master/image/202010/26/175443-776159.png)
 
 接下来是客户端
 
  1 首先是获取到注册到Zookeeper 的服务端地址信息
 
-![image-20201026143423307](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20201026143423307.png)
+![image-20201026143423307](https://gitee.com/adc123321/blog_img/raw/master/image/202010/26/175438-211007.png)
 
  2 然后  对节点的增加操作 移除 进行相应的服务端管理信息
 
