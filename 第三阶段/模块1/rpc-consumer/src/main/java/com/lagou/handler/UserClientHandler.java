@@ -1,47 +1,55 @@
 package com.lagou.handler;
 
-import com.lagou.rpcRequest.RpcRequest;
+import com.lagou.client.DefaultFuture;
+import com.lagou.pojo.RPCResponse;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import org.springframework.stereotype.Component;
 
-import java.util.concurrent.Callable;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
- *  自定义事件处理器
+ * 自定义事件处理器
  */
-public class UserClientHandler extends ChannelInboundHandlerAdapter implements Callable {
+@Component
+@ChannelHandler.Sharable
+public class UserClientHandler extends ChannelInboundHandlerAdapter {
 
-    //1.定义成员变量
-    private ChannelHandlerContext context; //事件处理器上下文对象 (存储handler信息,写操作)
-    private String result; // 记录服务器返回的数据
-    private RpcRequest param; //记录将要返送给服务器的数据
 
-    //2.实现channelActive  客户端和服务器连接时,该方法就自动执行
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        //初始化ChannelHandlerContext
-        this.context = ctx;
-    }
+    /**
+     * 使用Map维护请求对象ID与响应结果Future的映射关系
+     */
+    public final Map<String, DefaultFuture> futureMap = new ConcurrentHashMap<>();
 
 
     //3.实现channelRead 当我们读到服务器数据,该方法自动执行
     @Override
     public synchronized void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        //将读到的服务器的数据msg ,设置为成员变量的值
-        result = msg.toString();
-        notify();
+        if (msg instanceof RPCResponse) {
+            //获取响应对象
+            RPCResponse response = (RPCResponse) msg;
+            DefaultFuture defaultFuture = futureMap.get(response.getRequestId());
+            //将结果写入DefaultFuture
+            defaultFuture.setResponse(response);
+        }
+        super.channelRead(ctx, msg);
     }
 
-    //4.将客户端的数写到服务器
-    public synchronized Object call() throws Exception {
-        //context给服务器写数据
-        context.writeAndFlush(param);
-        wait();
-        return result;
-    }
-
-    //5.设置参数的方法
-    public void setParam(RpcRequest  param){
-        this.param = param;
+    /**
+     * 获取响应结果
+     *
+     * @param requsetId
+     * @return
+     */
+    public RPCResponse getRPCResponse(String requsetId) {
+        try {
+            DefaultFuture future = futureMap.get(requsetId);
+            return future.getRpcResponse(5000);
+        } finally {
+            //获取成功以后，从map中移除
+            futureMap.remove(requsetId);
+        }
     }
 }
