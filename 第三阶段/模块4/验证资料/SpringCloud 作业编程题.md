@@ -8,7 +8,7 @@
 
 实现效果如下：
 
-![image-20201127155925594](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20201127155925594.png)
+![](https://gitee.com/adc123321/blog_img/raw/master/image/202011/27/164355-872457.png)
 
   接下来（**Show Time**）
 
@@ -37,7 +37,7 @@
 
  **收到邮箱验证码**
 
-![image-20201127161455123](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20201127161455123.png)
+![image-20201127161455123](https://gitee.com/adc123321/blog_img/raw/master/image/202011/27/164357-974758.png)
 
  **输入错误的验证码**
 
@@ -65,7 +65,7 @@
 
 ​      码云的配置1分钟 限制3次
 
-![image-20201127162115878](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20201127162115878.png)
+![image-20201127162115878](https://gitee.com/adc123321/blog_img/raw/master/image/202011/27/164411-479111.png)
 
 ![image-20201127162126670](https://gitee.com/adc123321/blog_img/raw/master/image/202011/27/162126-617649.png)
 
