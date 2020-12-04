@@ -22,7 +22,7 @@
 
 1.  先看Nacos 注册的服务列表
 
-   ![image-20201204100918828](https://gitee.com/adc123321/blog_img/raw/master/image/202012/04/100919-986811.png)
+   ![image-20201204100918828](https://gitee.com/adc123321/blog_img/raw/master/image/202012/04/110118-553494.png)
 
 说明服务已经注册成功。
 
