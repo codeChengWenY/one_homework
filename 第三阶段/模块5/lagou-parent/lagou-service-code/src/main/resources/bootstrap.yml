@@ -1,0 +1,41 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: lagou-service-code
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test_lagou?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    database: MySQL
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl  #避免将驼峰命名转换为下划线命名
+  cloud:
+    nacos:
+      discovery:
+        ################ 配置nacos server地址
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard:  127.0.0.1:8080 # sentinel dashboard/console 地址
+  main:
+    allow-bean-definition-overriding: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+dubbo:
+  registry:
+    # 挂载到 Spring Cloud 注册中心
+    address: spring-cloud://localhost
+  cloud:
+    # 订阅服务提供方的应用列表，订阅多个服务提供者使用 "," 连接
+    subscribed-services: lagou-service-email
+  consumer:
+    timeout: 3000

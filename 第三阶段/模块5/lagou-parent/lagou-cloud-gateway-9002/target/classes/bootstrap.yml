@@ -1,0 +1,52 @@
+server:
+  port: 9002
+spring:
+  application:
+   name: lagou-cloud-gateway
+  cloud:
+    gateway:
+      routes: # 路由可以有多个
+        - id: service-user-router      # 我们自定义的路由 ID，保持唯一
+          #uri: http://127.0.0.1:8081       # 目标服务地址
+          uri: lb://lagou-service-user
+          predicates:                                         # 断言：路由条件，Predicate 接受一个输入参数，返回一个布尔值结果。该接口包含多种默 认方法来将 Predicate 组合成其他复杂的逻辑（比如：与，或，非）。
+            - Path=/api/user/**
+          filters:
+            - StripPrefix=1
+        - id: service-code-router      # 我们自定义的路由 ID，保持唯一
+          #uri: http://127.0.0.1:8081       # 目标服务地址
+          uri: lb://lagou-service-code
+          predicates:                                         # 断言：路由条件，Predicate 接受一个输入参数，返回一个布尔值结果。该接口包含多种默 认方法来将 Predicate 组合成其他复杂的逻辑（比如：与，或，非）。
+            - Path=/api/code/**
+          filters:
+            - StripPrefix=1
+    nacos:
+      discovery:
+        ################ 配置nacos server地址
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: 7bd6ddcb-25c3-4dcc-b610-3c81af4b3a64
+        group: DEFAULT_GROUP # 默认分组就是DEFAULT_GROUP，如果使⽤默认分组可以不配置
+        file-extension: yaml #默认properties
+        # 根据规则拼接出来的dataId效果：lagou-cloud-gateway.yaml
+    sentinel:
+      transport:
+        dashboard:  127.0.0.1:8080 # sentinel dashboard/console 地址
+      scg:
+        order: -2147483648 # 过滤器顺序，默认为 -2147483648 最高优先级
+        fallback:
+          mode: response # fallback 模式，目前有三种：response、redirect、空（我们走自定义fallback类内容）
+
+          # 对应 response 模式
+          response-status: 429 # 响应状态码，默认为 429
+          response-body: This request is blocked by erbadagang's sentinel. # 响应内容，默认为空
+          content-type: application/json # 内容类型，默认为 application/json
+
+          # 对应 redirect 模式
+          redirect: http://www.baidu.com
+
+
+
+
+

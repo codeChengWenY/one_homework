@@ -1,0 +1,15 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: lagou-service-user
+  cloud:
+    nacos:
+      discovery:
+        ################ 配置nacos server地址
+        server-addr: 127.0.0.1:8848
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
