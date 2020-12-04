@@ -66,5 +66,5 @@ GateWay的成功启动说明已经从Nacos中拿到配置信息了。
 
    页面显示限流信息 成功。
 
-**整体思路 ** ： 根据需要依赖进行整合SpringCloudAlibaba 。
+**整体思路** ： 根据需要依赖进行整合SpringCloudAlibaba 。
 
