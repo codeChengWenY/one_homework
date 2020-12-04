@@ -58,7 +58,7 @@ GateWay的成功启动说明已经从Nacos中拿到配置信息了。
 
 ![image-20201204102627667](https://gitee.com/adc123321/blog_img/raw/master/image/202012/04/102628-21927.png)
 
-![image-20201204102708740](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20201204102708740.png)
+![image-20201204102708740](https://gitee.com/adc123321/blog_img/raw/master/image/202012/04/103152-867818.png)
 
  说明  每秒超过1个QPS 会进行60s的快速失败。
 
