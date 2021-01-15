@@ -1,7 +1,4 @@
                                                            redis 集群（redis_cluster）搭建
-
-
-
 RedisCluster最少需要三台主服务器，三台从服务器。 
 
 - 下载redis 对应的版本
@@ -31,10 +28,10 @@ wget http://download.redis.io/releases/redis-5.0.5.tar.gz
   ```
 
 - 拷贝配置文件
-
-     ```
-cp /root/redis-5.0.5/redis.conf /root/redis_cluster/7001/bin
-     ```
+  
+  ```
+     cp /root/redis-5.0.5/redis.conf /root/redis_cluster/7001/bin
+  ```
 
 -  修改配置文件
 
@@ -57,11 +54,11 @@ cp /root/redis-5.0.5/redis.conf /root/redis_cluster/7001/bin
 - 复制7001，创建7002~7006实例，**注意端口修改**。
 
   ```
-cp -r /root/redis_cluster/7001/* /root/redis_cluster/7002
-cp -r /root/redis_cluster/7001/* /root/redis_cluster/7003 
-cp -r /root/redis_cluster/7001/* /root/redis_cluster/7004 
-cp -r /root/redis_cluster/7001/* /root/redis_cluster/7005 
-cp -r /root/redis_cluster/7001/* /root/redis_cluster/7006
+   cp -r /root/redis_cluster/7001/* /root/redis_cluster/7002
+   cp -r /root/redis_cluster/7001/* /root/redis_cluster/7003 
+   cp -r /root/redis_cluster/7001/* /root/redis_cluster/7004 
+   cp -r /root/redis_cluster/7001/* /root/redis_cluster/7005 
+   cp -r /root/redis_cluster/7001/* /root/redis_cluster/7006
   ```
 
 - 创建 start.sh 启动所有实例
@@ -143,16 +140,15 @@ cd redis_cluster/7001/bin/
 
 查看集群状态
 
-     ```powershell
- cluster info 
-     ```
-
+```
+cluster info 
+```
 ![image-20210114144003634](https://gitee.com/adc123321/blog_img/raw/master/image/202101/14/144006-851450.png)
 
 查看集群中的节点
 
-```powershell
-cluster nodes
+```
+  cluster nodes
 ```
 
 ![image-20210114144132655](https://gitee.com/adc123321/blog_img/raw/master/image/202101/14/144133-335819.png)
@@ -189,8 +185,8 @@ cp /root/redis-5.0.5/redis.conf /root/redis_cluster/7008/bin
 
 - ​    **第一步：连接上集群（连接集群中任意一个可用结点都行）**
 
-    ```powershell
- ./redis-cli --cluster reshard 10.9.49.202:7007
+    ```
+    ./redis-cli --cluster reshard 10.9.49.202:7007
     ```
 
 - **第二步：输入要分配的槽数量**
