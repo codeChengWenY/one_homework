@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>付款</title>
+    <style>
+        .container {
+            width: 400px;
+            margin: auto;
+        }
+
+        .btn {
+            width: 80px;
+            margin-top: 10px;
+            float: right;
+        }
+    </style>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+    </script>
+</head>
+<body>
+<div class="container">
+    <table border="2" width="400">
+        <tr>
+            <td >订单号</td>
+            <td id="orderId">CK23097512850128742</td>
+        </tr>
+        <tr>
+            <td>商品名称</td>
+            <td>手机</td>
+        </tr>
+        <tr>
+            <td>价格</td>
+            <td>2000¥</td>
+        </tr>
+        <tr>
+            <td>状态</td>
+            <td>未付款</td>
+        </tr>
+        <tr>
+            <td>备注</td>
+            <td>请在10s内支付</td>
+        </tr>
+    </table>
+    <button id="pay" class="btn">支付</button>
+</div>
+<script>
+    (function ($) {
+        $.getUrlParam = function (name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+    })(jQuery);
+
+    const id = $.getUrlParam("id");
+    $("#orderId").text(id);
+
+    $("#pay").click(function () {
+        $.ajax({
+            url: "/pay?id="+id,
+            type:"POST",
+            success: function (result) {
+                alert(result);
+                if('支付成功'==result){
+                    window.location.href='success.html';
+                }else {
+                    window.location.href='list.html';
+
+                }
+            }
+        });
+    });
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下单</title>
+    <style>
+        .container {
+            width: 400px;
+            margin: auto;
+        }
+
+        .btn {
+            width: 80px;
+            margin-top: 10px;
+            float: right;
+        }
+    </style>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+    </script>
+</head>
+
+<body>
+
+
+<div class="container">
+    <table border="2" width="400px">
+
+        <tr>
+            <td>商品名称</td>
+            <td>手机</td>
+        </tr>
+        <tr>
+            <td>价格</td>
+            <td>2000¥</td>
+        </tr>
+        <tr>
+            <td>产地</td>
+            <td>CHINA</td>
+        </tr>
+        <tr>
+            <td>生产日期</td>
+            <td>2021-01-12</td>
+        </tr>
+    </table>
+
+    <button class="btn" id="order">下单</button>
+</div>
+
+
+</body>
+<script>
+    $("#order").click(function () {
+        $.ajax({
+            url: "/order",
+            type:"POST",
+            success: function (result) {
+                window.location.href='order.html?id='+result.orderId;
+            }
+        });
+    });
+
+
+</script>
+
+
+</html>
