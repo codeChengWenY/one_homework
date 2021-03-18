@@ -20,11 +20,7 @@ docker是一种轻量级的虚拟化方式
 
  Docker常用命令
 
-
-
-![image-20210318151000222](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20210318151000222.png)
-
-
+![image-20210318151000222](https://gitee.com/adc123321/blog_img/raw/master/image/202103/18/161605-357589.png)
 
 **images命令**
 
