@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deploy
+  labels:
+    app: mysql-deploy
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: mysql-deploy
+      labels:
+        app: mysql-deploy
+    spec:
+      containers:
+        - name: mysql-deploy
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: admin
+          image: mysql:5.7.31
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: volume-mysqldata
+      restartPolicy: Always
+      volumes:
+        - name: volume-mysqldata
+          hostPath:
+            path: /data/mysqldata
+            type: Directory
+  selector:
+    matchLabels:
+      app: mysql-deploy
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-svc
+spec:
+  selector:
+    app: mysql-deploy
+  ports:
+    - port: 3306
+      targetPort: 3306
+      nodePort: 30036
+  type: NodePort
