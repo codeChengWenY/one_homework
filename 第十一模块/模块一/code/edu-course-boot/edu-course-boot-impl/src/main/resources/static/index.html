@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js" type="application/javascript"></script>
+    <script src="https://lib.baomitu.com/socket.io/2.3.0/socket.io.js" type="application/javascript"></script>
+    <script>
+        $(function(){
+            var socket = io.connect('http://localhost:8003');
+            //监听名为hello的事件，这与服务端推送的那个事件名称必须一致
+            socket.on("hello", function(data){
+                $('#content').text(data);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="display" style="height:50px;">
+        提示：<span id="content">0</span>
+    </div>
+</body>
+</html>
