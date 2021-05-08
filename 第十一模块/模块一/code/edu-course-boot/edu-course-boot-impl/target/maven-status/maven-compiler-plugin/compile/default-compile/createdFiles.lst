@@ -1,0 +1,9 @@
+com\lagou\edu\course\remote\CourseRemoteServiceImpl.class
+com\lagou\edu\course\entity\Course.class
+com\lagou\edu\course\config\WebSocketConfig.class
+com\lagou\edu\course\LagouCourseApplication.class
+com\lagou\edu\course\mapper\CourseMapper.class
+com\lagou\edu\course\service\impl\CourseServiceImpl.class
+com\lagou\edu\course\service\ICourseService.class
+com\lagou\edu\course\controller\CourseController.class
+com\lagou\edu\course\config\WebSocketConfig$1.class

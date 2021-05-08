@@ -1,0 +1,69 @@
+version: '3'
+services:
+  lagou-mysql:
+    build:
+      context: ./mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+    restart: always
+    container_name: lagou-mysql
+    volumes:
+      - /data/edu-bom/mysql/lagou:/var/lib/mysql
+    image: lagou/mysql:5.7
+    ports:
+      - 3306:3306
+  lagou-eureka:
+    build:
+      context: ./edu-eureka-boot
+    restart: always
+    hostname: edu-eureka-boot
+    image: lagou/edu-eureka-boot:1.0
+    ports:
+      - 8761:8761
+    container_name: edu-eureka-boot
+    depends_on:
+      - lagou-mysql
+  lagou-config:
+    build:
+      context: ./edu-config-boot
+    restart: always
+    hostname: edu-config-boot
+    image: lagou/edu-config-boot:1.0
+    ports:
+      - 8090:8090
+    container_name: edu-config-boot
+    depends_on:
+      - lagou-eureka
+  lagou-course:
+    build:
+      context: ./edu-course-boot
+    restart: always
+    hostname: edu-course-boot
+    image: lagou/edu-course-boot:1.0
+    ports:
+      - 8002:8002
+    container_name: edu-course-boot
+    depends_on:
+      - lagou-config
+  lagou-boss:
+    build:
+      context: ./edu-boss-boot
+    restart: always
+    hostname: edu-boss-boot
+    image: lagou/edu-boss-boot:1.0
+    ports:
+      - 8082:8082
+    container_name: edu-boss-boot
+    depends_on:
+      - lagou-course
+  lagou-gateway:
+    build:
+      context: ./edu-gateway-boot
+    restart: always
+    hostname: edu-gateway-boot
+    image: lagou/edu-gateway-boot:1.0
+    ports:
+      - 9001:9001
+    container_name: edu-gateway-boot
+    depends_on:
+      - lagou-boss

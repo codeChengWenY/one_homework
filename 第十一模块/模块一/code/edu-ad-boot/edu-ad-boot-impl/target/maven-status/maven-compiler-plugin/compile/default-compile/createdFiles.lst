@@ -1,0 +1,12 @@
+com\lagou\edu\ad\remote\AdRemoteServiceImpl.class
+com\lagou\edu\ad\service\IPromotionAdService.class
+com\lagou\edu\ad\controller\PromotionSpaceController.class
+com\lagou\edu\ad\mapper\PromotionAdMapper.class
+com\lagou\edu\ad\service\impl\PromotionSpaceServiceImpl.class
+com\lagou\edu\ad\entity\PromotionSpace.class
+com\lagou\edu\ad\service\IPromotionSpaceService.class
+com\lagou\edu\ad\entity\PromotionAd.class
+com\lagou\edu\ad\mapper\PromotionSpaceMapper.class
+com\lagou\edu\ad\controller\PromotionAdController.class
+com\lagou\edu\ad\LagouEduAdApplication.class
+com\lagou\edu\ad\service\impl\PromotionAdServiceImpl.class

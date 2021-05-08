@@ -6,7 +6,7 @@ spring:
     name: lagou-edu-course
   cloud:
     config:
-      uri: http://localhost:8090
+      uri: http://192.168.100.100:8090
       label: master
       profile: dev
       name: lagou-edu-course
@@ -14,7 +14,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:8761/eureka/
+      defaultZone: http://192.168.100.100:8761/eureka/
 
   instance:
     prefer-ip-address: true
